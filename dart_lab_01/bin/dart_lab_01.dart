@@ -1,4 +1,3 @@
-import 'package:dart_lab_01/dart_lab_01.dart' as dart_lab_01;
 import 'dart:io';
 void main(List<String> arguments) {
   // print("Enter first number: " );
@@ -85,5 +84,5 @@ void main(List<String> arguments) {
   print("Enter an integer:");
   int number=int.parse(stdin.readLineSync()!);
   int digitCount=number.abs().toString().length;
-  print("Number of digits in ${number} is: ${digitCount}");
+  print("Number of digits in $number is: $digitCount");
 }
