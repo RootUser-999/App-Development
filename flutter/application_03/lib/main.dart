@@ -5,6 +5,8 @@ void main() {
 }
 
 class HomeWorkoutApp extends StatelessWidget {
+  const HomeWorkoutApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,6 +23,8 @@ class HomeWorkoutApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
   State<StatefulWidget> createState() => _MainPageState();
 }
@@ -95,6 +99,8 @@ class HomeScreen extends StatelessWidget {
     'duration': '15 min',
     'exercises': 5,
   };
+
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +184,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text('Start'),
                     style: ElevatedButton.styleFrom(
                       iconColor: Colors.deepPurple,
                       shape: RoundedRectangleBorder(
@@ -188,6 +193,7 @@ class HomeScreen extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                       textStyle: TextStyle(fontSize: 16),
                     ),
+                    child: Text('Start'),
                   ),
                 ],
               ),
@@ -276,6 +282,8 @@ class WorkoutsScreen extends StatelessWidget {
     ),
   ];
 
+  const WorkoutsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -356,8 +364,7 @@ class WorkoutDetailScreen extends StatelessWidget {
   final Workout? workout;
   final String? workoutTitle;
 
-  const WorkoutDetailScreen({Key? key, this.workout, this.workoutTitle})
-      : super(key: key);
+  const WorkoutDetailScreen({super.key, this.workout, this.workoutTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -459,6 +466,8 @@ class ProgressScreen extends StatelessWidget {
   final int totalWorkoutsDone = 18;
   final int totalWorkoutsGoal = 30;
   final int badgesEarned = 3;
+
+  const ProgressScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -563,6 +572,8 @@ class CommunityScreen extends StatelessWidget {
     'Achievements unlocked! Level 3 badge earned. 🏅',
   ];
 
+  const CommunityScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -622,14 +633,14 @@ class CommunityScreen extends StatelessWidget {
   }
 
   void _showNewPostDialog(BuildContext context) {
-    final TextEditingController _controller = TextEditingController();
+    final TextEditingController controller = TextEditingController();
 
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
         title: Text('New Post'),
         content: TextField(
-          controller: _controller,
+          controller: controller,
           maxLines: 3,
           decoration: InputDecoration(
             hintText: 'Share your workout experience or tips...',
@@ -641,7 +652,7 @@ class CommunityScreen extends StatelessWidget {
               onPressed: () => Navigator.pop(context), child: Text('Cancel')),
           ElevatedButton(
               onPressed: () {
-                if (_controller.text.trim().isNotEmpty) {
+                if (controller.text.trim().isNotEmpty) {
                   // In a real app, we would post to backend or update state
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text('Post submitted!'),

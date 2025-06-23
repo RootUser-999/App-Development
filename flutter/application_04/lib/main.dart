@@ -6,6 +6,8 @@ void main() => runApp(MaterialApp(
 ));
 
 class Home extends StatelessWidget {
+  const Home({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,7 @@ class Home extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             height: 250,
             width: MediaQuery.of(context).size.width,
             child: Image.network(
