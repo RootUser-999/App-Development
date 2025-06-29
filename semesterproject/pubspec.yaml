@@ -34,6 +34,10 @@ flutter:
   assets:
     - lib/assets/images/bg1.JPG
     - lib/assets/images/google.png
+    - lib/assets/images/exercises/chest.JPG
+    - lib/assets/images/exercises/arms.JPG
+    - lib/assets/images/exercises/back.JPG
+    - lib/assets/images/exercises/legs.JPG
     - lib/assets/animations/fitness_bg.json
     # Make sure the following files exist. If not, either place them or comment them.
     # - assets/animations/fitness_bg.json

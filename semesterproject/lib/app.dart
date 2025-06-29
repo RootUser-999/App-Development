@@ -4,7 +4,7 @@ import 'screens/auth/login_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/onboarding/user_info_screen.dart';
 import 'screens/home/home_screen.dart';
-import 'screens/home/workout_detail_screen.dart';
+// Removed 'workout_detail_screen.dart' import
 import 'screens/home/video_player_screen.dart';
 import 'constants/colors.dart';
 

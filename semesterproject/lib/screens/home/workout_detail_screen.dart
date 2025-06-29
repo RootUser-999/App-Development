@@ -1,73 +1,104 @@
 import 'package:flutter/material.dart';
-import 'video_player_screen.dart';
 
 class WorkoutDetailScreen extends StatelessWidget {
   final String category;
+  final List<Map<String, String>> workouts;
 
-  const WorkoutDetailScreen({super.key, required this.category});
-
-  List<Map<String, String>> getWorkoutPlan() {
-    return List.generate(30, (index) {
-      return {
-        'day': 'Day ${index + 1}',
-        'videoUrl': 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-        'description': 'Workout routine for ${category.toLowerCase()} - Day ${index + 1}',
-        'thumbnail': 'https://img.youtube.com/vi/BgNrzEn2vAo/0.jpg', // Placeholder
-      };
-    });
-  }
+  const WorkoutDetailScreen({
+    super.key,
+    required this.category,
+    required this.workouts,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final workouts = getWorkoutPlan();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('$category Workouts'),
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: Colors.deepPurple.shade700,
+        elevation: 6,
       ),
-      body: ListView.builder(
-        itemCount: workouts.length,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        itemBuilder: (context, index) {
-          final workout = workouts[index];
-          return Card(
-            margin: const EdgeInsets.only(bottom: 12),
-            elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            child: ListTile(
-              contentPadding: const EdgeInsets.all(12),
-              leading: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  workout['thumbnail']!,
-                  width: 70,
-                  height: 70,
-                  fit: BoxFit.cover,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.black87, Colors.deepPurple],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        padding: const EdgeInsets.all(16),
+        child: workouts.isEmpty
+            ? const Center(
+                child: Text(
+                  'No workouts found.',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
-              ),
-              title: Text(
-                workout['day']!,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              subtitle: Text(workout['description']!),
-              trailing: IconButton(
-                icon: const Icon(Icons.play_circle_fill, size: 30, color: Colors.redAccent),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => VideoPlayerScreen(
-                        title: workout['day']!,
-                        videoUrl: workout['videoUrl']!,
+              )
+            : ListView.separated(
+                itemCount: workouts.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+                itemBuilder: (context, index) {
+                  final workout = workouts[index];
+                  final title = workout['title'] ?? 'Workout';
+                  final duration = workout['duration'] ?? 'N/A';
+
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black45,
+                          blurRadius: 6,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      leading: const Icon(Icons.fitness_center, color: Colors.white, size: 30),
+                      title: Text(
+                        title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      subtitle: Text(
+                        'Duration: $duration',
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 14,
+                        ),
+                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            backgroundColor: Colors.grey.shade900,
+                            title: Text(
+                              title,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            content: Text(
+                              'This $category workout lasts about $duration.',
+                              style: const TextStyle(color: Colors.white70),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('Close'),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
               ),
-            ),
-          );
-        },
       ),
     );
   }
