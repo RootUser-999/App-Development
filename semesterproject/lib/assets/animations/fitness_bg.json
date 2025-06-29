@@ -1,0 +1,11 @@
+{
+  "users": {
+    "uid123456": {
+      "name": "John Doe",
+      "email": "johndoe@gmail.com",
+      "photoUrl": "https://lh3.googleusercontent.com/...",
+      "provider": "google",
+      "createdAt": "2025-06-29T08:00:00Z"
+    }
+  }
+}

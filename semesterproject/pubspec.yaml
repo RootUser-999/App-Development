@@ -1,0 +1,52 @@
+name: semesterproject
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^2.0.0
+  google_sign_in: ^6.0.0
+  cloud_firestore: ^4.17.5
+  provider: ^6.0.0
+  video_player: ^2.8.0
+  flutter_svg: ^2.0.7
+  shared_preferences: ^2.0.15
+  firebase_auth: ^4.5.0
+  flutter_spinkit: ^5.2.0
+  lottie: ^3.1.0
+  google_fonts: ^6.2.1
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - lib/assets/images/bg1.JPG
+    - lib/assets/images/google.png
+    - lib/assets/animations/fitness_bg.json
+    # Make sure the following files exist. If not, either place them or comment them.
+    # - assets/animations/fitness_bg.json
+    # - assets/animations/signup.json
+
+    # Optional workout images – uncomment if added to your assets folder
+    # - assets/images/chest.jpg
+    # - assets/images/arms.jpg
+    # - assets/images/back.jpg
+    # - assets/images/legs.jpg
+
+  # To enable custom fonts, use the section below.
+  # fonts:
+  #   - family: YourFont
+  #     fonts:
+  #       - asset: fonts/YourFont-Regular.ttf
